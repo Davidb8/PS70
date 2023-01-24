@@ -10,21 +10,23 @@
     .photo-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        width: 80%; /* decrease the width of the grid */
+        width:fit-content; /* decrease the width of the grid */
+        padding:5%;
         justify-content: center; /* center the photos horizontally */
         align-items: center; /* center the photos vertically */
     }
 
     .photo-grid img {
-        width: 50%;
+        width: auto;
+        padding: auto;
         transition: opacity 0.2s ease-in-out;
         object-fit: cover; /* maintain the aspect ratio while filling the square */
-        margin: 0.2rem; /* decrease the margin between photos */
+        margin: 0.3rem; /* decrease the margin between photos */
 
     }
 
     .photo-grid a:hover img {
-        opacity: 0.1;
+        opacity: 0.05;
     }
 
     .photo-grid a {
@@ -37,9 +39,9 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 50%;
-        height: 50%;
-        display: flex;
+        width: 100%;
+        height: 100%;
+        
         align-items: center;
         justify-content: center;
         flex-direction: column;
@@ -47,13 +49,17 @@
         color: white;
         font-size: 1.2rem;
         opacity: 0;
-        transition: opacity 0.4s ease-in-out;
+        transition: opacity 0.4s ease-in-out; /* make the caption appear gradually */
         pointer-events: none; /* prevent captions from blocking mouse events */
     }
 
     .photo-grid a:hover .caption {
         display: block;
         opacity: 1;
+    }
+
+    p {
+      color: #ffffff;
     }
 
 
@@ -70,10 +76,7 @@
       </ul>
     </nav>
     <h1>PS70: Intro to Digital Fabrications</h1>
-
-
-    
-</header>
+  </header>
 
   <main>
     <div class="photo-grid">
@@ -81,7 +84,7 @@
           <img src="./Week01/thumbnail.jpg" alt="Week 1">
           <div class="caption">
             <h3>Week 1</h3>
-            <p>Description of week 1</p>
+            <p>Introduction and Documentation</p>
           </div>
         </a>
         <a href="./Week02/Week02_index.html">

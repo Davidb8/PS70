@@ -1,7 +1,7 @@
 /* style.css */
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif; /* use the Open Sans font */
     background-color: #333;
     margin: 0;
     padding: 0;
@@ -75,3 +75,18 @@ p {
     text-align: center;
 }
 
+.code-block {
+    display: block;
+    margin-left: auto;
+  margin-right: auto;
+    background-color: #797575;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .code-text {
+    font-family: 'Source Code Pro', monospace;
+    color: rgb(214, 211, 211);
+    font-size: 0.9rem;
+  }
+  
