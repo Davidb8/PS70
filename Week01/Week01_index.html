@@ -11,18 +11,22 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
+  width: 60%;
 }
 
 h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #9e9e9e;
   padding: 10px;
-  display: inline-block;
-  width: fit-content;
+  width: max-content;
+  text-align: center;
 }
 
 p {
     padding: 15px;
+    font-size: medium;
 }
 
 div {
@@ -36,6 +40,13 @@ div {
 img {
   border: 16px solid rgb(109, 109, 109);
 }
+header {
+    background-color: #f2f2f2;
+    color: #333;
+    padding-bottom: 0rem;
+    text-align: center;
+}
+
 
     </style>
 
@@ -51,41 +62,43 @@ img {
           <li><a href="../final_project.html">Final Project</a></li>
         </ul>
       </nav>
-      <h1>Introduction & Documentation</h1>
-      <p>January 22, 2023</p>
+      <h1 style="padding: 0">Introduction & Documentation</h1>
+      <p style="padding: 0;margin: 3px;">Week 1</p>
+      <p style="padding: 0;margin: 3px;">January 22, 2023</p>
     </header>
 
     <main>
       <div>
-        <h2 class="center">Introduction</h2>
+        <h2>Preface</h2>
         <p class='center'>Welcome to Week 1 of PS70: Intro to Digital Fabrications. Week 1 involved alot of onboarding and set up to prep for the rest of class. This included fun things like doing the lab safety course on 
         the Amtrak from NYC to Boston with my phone hotspot that kept going out - thankfully I did not lose too much progress. As well, I had a blast setting up a github repository - like my own child
         honestly, except I hope I like my child a lot more than I envision I will like trying to keep this repo organized and setup. Anyways, I went ahead and made the first version of my site. I started
         with just building out a skeleton for the class to let me get a vision for what things will look like in the figure, so I setup for Weeks 1-12 to have folders and just default images in them. 
-        This way my homescreen can have these images displayed so I can figure out the layout and such of the many photos that I will have towards the end. Here is what the homepage looks like right now.
+        This way my home screen can have these images displayed so I can figure out the layout and such of the many photos that I will have towards the end. Here is what the homepage looks like right now:
         </p>
         <img src="home_screen.jpg" alt="Website Home Screen" width=40% class="center">
       </div>
 
 
-      <div>
-        <h2 class="center">HTML and CSS </h2>
+      <div style="padding-top: 2rem;">
+        <h2>HTML and CSS</h2>
         <p class='center'>The goal of this week is to flesh out an index page to link to all of our assignments, as well as an about page to talk about us (how cute). And then spend some time working with HTML and CSS 
         to gain some familiarity. I am currently opting for the sleek approach to have each week's photo link to the index page for that corresponding week (I am glad I made those skeleton folders now). 
-        So now when you visit the site you can click on any of the pictures and it will take you to that weeks assigment. As of right now, everything but week 1 is a stock photo from a sunrise photo I 
+        So now when you visit the site you can click on any of the pictures and it will take you to that weeks assigment.
+        <br><br>
+        As of right now, everything but week 1 is a stock photo from a sunrise photo I 
         took over the summer (had to justify the 3am hike somehow), and their links dont go anywhere - but they will soon :). Sometimes you are given the opportunity to try a food and you dont expect you
         will like it, so you dont even want to try it. But then you do, and love it. CSS is not one of those things. I have always naivly thought it was annoying and clunky, and after spending a few hours
-        working on it, I realize I was right. It is awful. The only thing worse than CSS is HTML itself - they were made for eachother I guess. I did eventually discover the wonders of a "style sheet" where
+        working on it, I realize I was right. It is awful. The only thing worse than CSS is HTML itself - they were made for eachother I guess. 
+        <br><br>I did eventually discover the wonders of a "style sheet" where
         I can put all of the styling into one file, and then input that said style sheet into each page so they maintain the same styling - its like magic. Now, each page doesn't look slightly different 
         because I couldnt get the colors and formating to match (huzzah). The only major progress what to get this sheek little gradiant affect when you hover over the images on the main homepage. Nobody
         likes when websites aggressively change colors on them, so this is like easing yourself into a warm sauna.. or something like that. It was a bit of a pain to figrue out how to have hidden text that
         will fade in (while the image darkens to increase contrast). It happens in three steps when you hover over the image - the opacity of the image decreases, the text appear at 0 opacity, and then it
         gradually increases in opacity. It looks something like this:
         </p> 
-      </div>
 
 
-      <div>
         <pre class='code-block'>
           <code class='code-text'>
 .caption {
@@ -114,22 +127,26 @@ img {
           </code>
         </pre>
 
-        <p class="center">Having this code display on the website took like over an hour, at this rate, creating this website will be an infinitely long process.</p>
+        <p class="center" >Having this code display on the website took like over an hour, at this rate, creating this website will be an infinitely long process. 
+          But I have now learned that you can do styling in the style section of the html site, in a style.css external sheet, or inline within the individual tags
+          This is good to have general trends for different tags along your site in the external doc, then have page specific styling stored in the style section of
+          the page, and in rare cases where you need specific conditions to be met by a particular section of a page, you can add the style within that tag.
+        </p>          
+      </div>
+
+    
+
+      <div>
+        <h2>Final Project Ideas</h2>
+        <p class='center'>And to finish off this page, We will be brain storming final project ideals. I hope to have a final project that relates to space exploration. Currently, my top idea is to simulate some sort of Mars Rover
+          operation on a small scale. Where there is some sensing device that is gathering information. It then transmits that information to a base station, and then that base station could transmit the data (once enough has been 
+          gathered by the rover) and transmit it off world
+        <br><br>
+        Another option would be to have an inteligent solar panel system for the rover. Where when initialized, the rover will have a light sensor of storts scan the sky, and then determine the optimal angle to have
+          the solar panel at to maximize its charging ability.
+        </p>
       </div>
 
     </main>
-
-    <section class = 'Final Project Ideas'>
-        <div>
-          <h2 class="center">Final Project Ideas</h2>
-          <p class='center'>And to finish off this page, We will be brain storming final project ideals. I hope to have a final project that relates to space exploration. Currently, my top idea is to simulate some sort of Mars Rover
-            operation on a small scale. Where there is some sensing device that is gathering information. It then transmits that information to a base station, and then that base station could transmit the data ( once enough has been 
-            gathered by the rover ) and transmit it off world
-          </p>
-          <p class='center'>Another option would be to have an inteligent solar panel system for the rover. Where when initialized, the rover will have a light sensor of storts scan the sky, and then determine the optimal angle to have
-            the solar panel at to maximize its charging ability.
-          </p>
-        </div>
-      </section>
   </body>
 </html>
