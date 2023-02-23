@@ -1,5 +1,5 @@
 
-const int potPinA = 2;  // define pin 3 for A-1A (PWM Speed)
+const int potPin = 2;  // define pin 3 for A-1A (PWM Speed)
 int motor1 = 18;
 int motor2 = 19;
 int potValue;
@@ -15,13 +15,14 @@ void setup() {
 void loop() {
   potValue = analogRead(potPin);
   percent = map(potValue,0,1023,0,100);
+  digitalWrite(motor1,HIGH);
   
   if (percent > 50){
     digitalWrite(motor1,HIGH);
-    digitalWrite(motor1,HIGH);
+    digitalWrite(motor2,HIGH);
   }
-  if else{
+  else{
     digitalWrite(motor1,LOW);
-    digitalWrite(motor1,LOW);
+    digitalWrite(motor2,LOW);
   }
 }

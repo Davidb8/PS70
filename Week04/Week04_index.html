@@ -119,11 +119,11 @@ header {
                 
                 if (percent > 50){
                   digitalWrite(motor1,HIGH);
-                  digitalWrite(motor1,HIGH);
+                  digitalWrite(motor2,HIGH);
                 }
-                if else{
+                else{
                   digitalWrite(motor1,LOW);
-                  digitalWrite(motor1,LOW);
+                  digitalWrite(motor2,LOW);
                 }
               }
             </code></pre>
@@ -221,11 +221,17 @@ header {
             and we figured maybe it got fried. So, we set out with a new board and set everything back up and were still unable to get the code to work
             correctly. We also tried to print information to the serial monitor, but it only would display giberish, even if it was given sample text 
             to display. This was especially frustrating because then we couldn't get information on what the potentiometers were outputting. We eventually
-            concluded that there was some issue with the computer to esp interaction, as well as some issue with using a data pin power source for a motor. 
+            concluded that there was some issue with the computer to esp interaction, as well as some issue with using a data pin power source for a motor.
+            <br><br>
+            Without being able to get a Serial output from the potentiometer, the goal for this week eclipsed, which is quite the tragedy. It is just not possible
+            to get the precision that I was hoping for (since I need motors to run at very specific speeds) without being able to get an analog reading of what
+            the potentiometer is outputting at voltage. 
             <br><br>
             Unfortunately, we were unsuccessful in implementing a working system, but I think I managed to gain a lot of clarity regarding how to go forward
             with the esp32 system, and with troubleshooting microcontroller programming. When I make a more permanent version of this sculpture, I will work
             to have a circuit design that has a similar affect as above, but probably will be run on the arduino, just to make my life easier.
+            <br><br>
+            <img src="light_test.gif" alt="light_test" width="35%">
         </p>
 
         </section>
