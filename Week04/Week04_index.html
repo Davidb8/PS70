@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Week 4 - Microcontroller Programming</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+
+    <style>
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dddddd;
+  padding: 10px;
+  width: max-content;
+  text-align: center;
+}
+
+p {
+    padding-left:  15rem;
+    padding-right:  15rem;
+    font-size: 1.3rem;
+}
+
+code {
+  color:rgb(255, 255, 255);
+}
+
+div {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2em 0;
+}
+
+
+img {
+  border: 16px solid rgb(109, 109, 109);
+}
+header {
+    background-color: #f2f2f2;
+    color: #333;
+    padding-bottom: 0rem;
+    text-align: center;
+}
+
+
+    </style>
+
+  </head>
+
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">David Brown?</a></li>
+          <li><a href="../final_project.html">Final Project</a></li>
+        </ul>
+      </nav>
+      <h1 style="padding: 0">Microcontroller Programming</h1>
+      <p style="padding: 0;margin: 3px;">Week 4</p>
+      <p style="padding: 0;margin: 3px;">Feburary 23, 2023</p>
+    </header>
+
+    <main>
+        <section>
+          <h2>Introduction</h2>
+          <p>
+            This week the goal was to program an arduino board to do something. A relative open ended task, but I decided I wanted mine
+            to relate to the previous weeks kinetic sculpture. As I left it, the sculpture works will just basic motor power, and no
+            precision control. So, the goal of this project is to implement a microcontroller based control system. This would include allowing
+            the motors to be turned off an on, and for the motor speeds to be opposite directions, and different speeds.
+          </p>
+        </section>
+
+        <section>
+          <h2>Circuity Design</h2>
+          <p>
+            I ended up having a few different designs for circuits, starting out with the most basic, and then stepping it up from there.
+            <br><br>
+            First, just a simple circuit that when a switch is closed, the motors turn on. I installed a resistor into 1 of the motor lines,
+            as a form of analog speed control. The motor with the lower power will spin slower - thus I can achieve two different speeds 
+            with only adding a single resistor.
+            <br><br>
+            <img src="Circuit 1.jpg" alt="circuit 1" width="35%">
+            <br><br>
+            After that, I wanted to create something will slightly more control. So I went around to playing with a potentiometer. The first 
+            iteration was a version that uses the potentiometer as a threshold device. The data line of the potentiometer is connected to the 
+            arduino, and then the data is mapped to 0-100. Then if its above a certain threshold, the board will output signal to a line. This
+            line would then act similarly to the previous revision where it will power the two motors, with a resistor between them. This is the
+            code I'm using:
+            <br><br>
+            <pre><code>
+              const int potPin = 2;  
+              int motor1 = 18;
+              int motor2 = 19;
+              int potValue;
+              int percent;
+
+              void setup() {
+                pinMode(motor1, OUTPUT); // specify these pins as outputs
+                pinMode(motor2, OUTPUT); // specify these pins as outputs
+                pinMode(potPin, INPUT); // specify these pins as inputsa
+              }
+
+              void loop() {
+                potValue = analogRead(potPin);
+                percent = map(potValue,0,1023,0,100);
+                
+                if (percent > 50){
+                  digitalWrite(motor1,HIGH);
+                  digitalWrite(motor1,HIGH);
+                }
+                if else{
+                  digitalWrite(motor1,LOW);
+                  digitalWrite(motor1,LOW);
+                }
+              }
+            </code></pre>
+            <br>
+            <a href="design_code_rev1\design_code_rev1.ino" download > Download code </a>
+            <br><br>
+            <p>
+            Then the final revision that I want allows the most user based control by sort of combining these two methods. There will be
+            constant power to a switch that feeds into an input pin on the esp32. When the board reads power to the switch it will output
+            power to two pins that will be connected to two potentiometers - one for each motor. The potentiometer's data lines will then
+            be read into the the board via two separate pins. The potentiometer data will now get mapped to be between -50 and 50, and those
+            values for each potentiometer will be outputted via analogWrite to the two motors. Thus the user will have full control over the 
+            system. They can control a switch to have the motors be on or off, and then control to potentiometer's that will vary both the 
+            speed and direction of the motors for the sculpture. This is the code I used:
+            </p>
+            <pre><code>
+              const int potPinAPower = 2;
+              const int potPinBPower = 3;
+              const int potPinAData = 2;
+              const int potPinBData = 2;
+              const int switchPin = 5;
+              int motorA = 18;
+              int motorB = 19;
+
+              int switchValue;
+              int potValueA;
+              int potValueB;
+              int percentA;
+              int percentB;
+
+              void setup() {
+                pinMode(motorA, OUTPUT); // specify these pins as outputs
+                pinMode(motorB, OUTPUT); // specify these pins as outputs
+                pinMode(potPinAPower, OUTPUT); // specify these pins as outputs
+                pinMode(potPinBPower, OUTPUT); // specify these pins as outputs
+                pinMode(switchPin, INPUT); // specify these pins as inputs
+                pinMode(potPinAData, INPUT); // specify these pins as inputs
+                pinMode(potPinBData, INPUT); // specify these pins as inputs
+
+              }
+
+              void loop() {
+                switchValue = digitalRead(switchPin)
+
+                // if switch closed --> power potentiometers
+                if (switchValue > 0){
+                  digitalWrite(potPinAPower,HIGH)
+                  digitalWrite(potPinBPower,HIGH)
+                }
+                else {
+                  digitalWrite(potPinAPower,LOW)
+                  digitalWrite(potPinBPower,LOW)
+                }
+
+                // read potentiometers
+                potValueA = analogRead(potPinAData);
+                potValueB = analogRead(potPinBData);
+
+                // map to values
+                percentA = map(potValueA,0,1023,-50,50);
+                percentB = map(potValueB,0,1023,-50,50);
+
+                // Analog write values to power motors
+                analogWrite(motorA,percentA)
+                analogWrite(motorB,percentB)
+                
+              }
+            </code></pre>
+            <a href="design_code_rev2\design_code_rev2.ino" download > Download code </a>
+          </p>
+        </section>
+
+
+        <section>
+          <h2>Implementation</h2>
+          <p>
+            Things unfortunately fell apart shortly after creating all my grand designs and plans. I built out the board with the esp32 onto
+            a breadboard and was unable to get anything to work for running the motors with the switch potentiometer setup. I worked around
+            with the multimeter to try and get a feel for what was going on in the circuity, and everything seemed to be behaving correctly,
+            and the motor lines were receiving power when intended.
+            <br><br>
+            I was worried that the motor wasn't adequate power. The multimeter showed 3.1V on the system, and the motor ran with a raw 5V and 
+            a raw 3.3V system. I went over and tested the minimum, and was able to get the motor to run with as little as 1.5V - so this wasn't
+            the issue. 
+            <br><br> 
+            I then switched to the most basic form of doing a resister based switch system from design 1. Even this wasnt working! I was receiving
+            current that varied with the resistor used (used between 220 ohm and 10 M ohm) via the multimeter so everything seemsed to be 
+            wired correctly. And for all the different voltage outputs that existed with those combinations, I couldn't get the motor to run.
+            <br><br>
+            I then tried it will LED lights instead and was able to get some good results, so then I shifted over to the second variation where
+            power is supplied when the potentiometer is above a threshold. With the LED lights system I was able to get the control to work as intended,
+            but again when shifted to the motor system it no longer worked.
+            <br><br>
+            I spent around 3 hours with Ibrahim and Isa looking through everything. At some point the esp32 seems to no longer be working correctly,
+            and we figured maybe it got fried. So, we set out with a new board and set everything back up and were still unable to get the code to work
+            correctly. We also tried to print information to the serial monitor, but it only would display giberish, even if it was given sample text 
+            to display. This was especially frustrating because then we couldn't get information on what the potentiometers were outputting. We eventually
+            concluded that there was some issue with the computer to esp interaction, as well as some issue with using a data pin power source for a motor. 
+            <br><br>
+            Unfortunately, we were unsuccessful in implementing a working system, but I think I managed to gain a lot of clarity regarding how to go forward
+            with the esp32 system, and with troubleshooting microcontroller programming. When I make a more permanent version of this sculpture, I will work
+            to have a circuit design that has a similar affect as above, but probably will be run on the arduino, just to make my life easier.
+        </p>
+
+        </section>
+
+
+    </main>
+  </body>
+</html>
