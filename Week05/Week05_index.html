@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Week 5 - 3D Design, Printing, Scanning</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+
+    <style>
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dddddd;
+  padding: 10px;
+  width: max-content;
+  text-align: center;
+}
+
+p {
+    padding-left:  15rem;
+    padding-right:  15rem;
+    font-size: 1.3rem;
+}
+
+code {
+  color:rgb(255, 255, 255);
+}
+
+div {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2em 0;
+}
+
+
+img {
+  border: 16px solid rgb(109, 109, 109);
+}
+header {
+    background-color: #f2f2f2;
+    color: #333;
+    padding-bottom: 0rem;
+    text-align: center;
+}
+
+
+    </style>
+
+  </head>
+
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">David Brown?</a></li>
+          <li><a href="../final_project.html">Final Project</a></li>
+        </ul>
+      </nav>
+      <h1 style="padding: 0">3D Design, Printing, Scanning</h1>
+      <p style="padding: 0;margin: 3px;">Week 5</p>
+      <p style="padding: 0;margin: 3px;">March 1, 2023</p>
+    </header>
+
+    <main>
+        <section>
+          <h2>Introduction</h2>
+          <p>
+            This week the goal was to 3D design and print something that could not easily be done with traditional subtractive methods.
+            It would first be important to define what a "subtractive" method is, specifically in relation to a "additive" method. Subtractive
+            methods work by starting with a hunk of something, and removing material until you end up with your desired final product. Additive
+            methods work in the other way, where you start with nothing, and build up until you end up with your part. Subtractive methods
+            are really easy to work with, but dont allow for the same complexity of build as additive methods. For example, a hollow cube would
+            be impossible to create using subtractive methods, but is very easy to do with additive methods. Classic subtractive methods would be
+            laser cutting or milling, and the main additive method is 3D printing.
+          </p>
+        </section>
+
+        <section>
+          <h2>Design</h2>
+          <p>
+            I decided this week to create a concentric set of spinning stars. This wouldnt really work well using subtractive methods as there 
+            would be no simple way to remove the material between the central dowel and each of the stars. So the first step was to design it in 
+            fusion 360. This design was in two steps of sketches, one for the stars and one for the dowel. There are the sketches:
+            <br><br>
+            <img src="star_sketch.jpg" alt="star sketch" width="35%">
+            <img src="rod_sketch.jpg" alt="rod sketch" width="35%">
+            <br><br>
+            Then I extruded everything to make it 3d, where the two sketches are on perpendicular planes. I designed it so that the rod sketch has
+            3 parts, 1 of the actual rod, 1 of an exterior larger piece that cuts out the stars to give space between the stars and the rod, and finally
+            a small little notch to connect the two for printing, that could be easily snapped off.
+            <br><br>
+            <img src="3d_model.jpg" alt="3D model" width="35%">
+            <br><br>
+            <a download href='Rotating Star v2.f3d'>Download my 3D Model file </a>
+            <br><br>
+          </p>
+        </section>
+
+
+        <section>
+          <h2>Printing</h2>
+          <p>
+            Now onto the final step of porting my model into PrusaSlicer and getting it printed. I exported my mesh 
+            (download <a download href='David_Star_Scaled.3mf'>here</a>), and worked to figure out how I wanted the supports to be done. I wanted to make
+            sure that the filament for the rod layer didn't extrude onto the star layer, but also didnt want to put so much support that the spin wouldnt work.
+            I eventually decided not to have any supports inside the star-rod area and to just bank on the little snappable connector I designed, and to only 
+            include supports for the area where the rod is floating over nothing.
+            <br><br>
+            <img src="sliced_star.jpg" alt="Star Gcode" width="35%">
+            <br><br>
+            <a download href='David_Star_Scaled_0.15mm_PLA_MK3S_4h41m.gcode'>Download my sliced gcode</a>
+            <br><br>
+            The print the first time did not set correctly on the first layer, likely due to the printer bed not being hot enough. But, after 
+            scraping off the failed print and restarting it, everything seemed to go flawlessly. It was a little difficult to be able to snap 
+            of the connectors I printed, but the supports came off like a breeze. Then finally after some time forcing some rotation, we ended up
+            with this:
+            <br><br>
+            <img src="star_done.jpg" alt="Final Product" width="35%">
+            <img src="star_spinning.gif" alt="Star Spinning Gif" width="35%">
+            <br><br>
+            For my first attempts at 3D printing, I am really happy with how it turned out. I do think I still have some work to do with making
+            my own supports that are easy to be snapped off for production, as well as cleaning up my general design.
+            <br><br>
+            
+        </p>
+
+        </section>
+
+        <section>
+          <h2>3D Scanning</h2>
+          <p>
+            tbd
+            
+        </p>
+
+        </section>
+
+
+    </main>
+  </body>
+</html>
