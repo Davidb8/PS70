@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Week 6 - Input Devices</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+
+    <style>
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dddddd;
+  padding: 10px;
+  width: max-content;
+  text-align: center;
+}
+
+p {
+    padding-left:  15rem;
+    padding-right:  15rem;
+    font-size: 1.3rem;
+}
+
+code {
+  color:rgb(255, 255, 255);
+}
+
+div {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2em 0;
+}
+
+
+img {
+  border: 16px solid rgb(109, 109, 109);
+}
+header {
+    background-color: #f2f2f2;
+    color: #333;
+    padding-bottom: 0rem;
+    text-align: center;
+}
+
+
+    </style>
+
+  </head>
+
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">David Brown?</a></li>
+          <li><a href="../final_project.html">Final Project</a></li>
+        </ul>
+      </nav>
+      <h1 style="padding: 0">Input Devices</h1>
+      <p style="padding: 0;margin: 3px;">Week 6</p>
+      <p style="padding: 0;margin: 3px;">March 9, 2023</p>
+    </header>
+
+    <main>
+        <section>
+          <h2>Introduction</h2>
+          <p>
+            This week the goal was to work with Input Devices. This is probably the most important week thus far in the context of preparing
+            for the final project. I recently restructured my final project to something that I think better fits into the context of the 
+            tools and skills of the course. For my final project, I will rely on some pretty solid communication between input devices and
+            output devices (which we will handle next week), which will likely involve a ton of less than fun programming! Something that has
+            already proven to be an annoying challenge for this week - who likes programming in C? It's probably the worst language ever.
+            <br><br>
+            Anyways, because of this, I am deviating from the sampled assignment structure for the week to allow me to focus on input based
+            devices and modes that will be particularly relevant towards my project, and to begin developing a code structure that will be
+            conducive for communication with the output devices I will work on in the coming weeks - primarily a large digital display and 
+            a system of pumps.
+          </p>
+        </section>
+
+        <section>
+          <h2>NFC Reader</h2>
+          <p>
+            A super integral part of my final project is the NFC reader for identifying what cocktails to be made. Its not actually a critical 
+            thing for functionality, but I always envisioned having it, so at this point it's essential.
+            <br><br>
+            The setup will be that there will be a collection of NFC cards, 1 for each cocktail. Then the user can pick one of those cards and 
+            tap it onto the machine, which will then begin an instructional process to take the user through each of the steps of the cocktail.
+            So, the goal for this segment is to wire an NFC reader to the arduino system, and have it interpret different cards into different
+            strings of text.
+            <br><br>
+            <img src="NFC_circuit.jpg" alt="NFC circuit wiring" width="35%">
+            <br><br>
+            Thankfully, the PN532 (NFC card chip) has a relatively straight forward setup for the system. So, I set up the card to basically just
+            be recognized by the arudino, and then check for any input NFC inputs. After I got that working, I began cataloging different tags
+            from the cards and fobs that I own, and assigning each to a cocktail. These are then interpreted in the readTag function in the code below. 
+            <br><br>
+            The final step was to make the code much better functionally. First, I removed all delay systems, so the reader now runs on the millis 
+            command protocol, which will be important to allow the nfc card reader to be scanning while other parts of the system are still operational.
+            Secondly, within the reading function, there is a certain amount of memory regarding what has been read so far via storaging the previous
+            value as a temporary variable. The key feature of this is that if the NFC reader reads the same tag that it most recently read, it wont
+            proceed with the rest of the functionality. This prevents it from reading the same card multiple times at once, and prevents users from 
+            getting unintended functionality.
+            <br><br>
+            Thus we finally end up with this output, where you can read a card or fob, and the system will generate a serial command (this will later
+            be information on the digital display), and it is robust to handle bad information, and other basic tampering.
+            <br><br>
+            <img src="NFC_reading.gif" alt="NFC reading gif" width="35%">
+            <br><br>
+          </p>
+        </section>
+
+
+        <section>
+          <h2>Capacitive Sensor</h2>
+          <p>
+            The second part of the assignment is to create a capacitive sensor in order to measure some sort of values by determining a change
+            in capacitance (more or less). The second major input system I need is buttons. They will be needed to scroll through menu items,
+            and then select modes and options. So, I decided to go for a capacitance sensor that is going to measure some discharge caused by
+            something grounding touching the sensor plate. This will be good if I choose to go for a button system that isn't tactile with a 
+            depression mechanism, but instead is almost like a touch screen.
+            <br><br>
+            <img src="capac_circuit.jpg" alt="NFC circuit wiring" width="35%">
+            <br><br>
+            <img src="Button_working.gif" alt="Star Gcode" width="35%">
+            <br><br>
+            <br><br>
+            
+        </p>
+
+
+    </main>
+  </body>
+</html>
