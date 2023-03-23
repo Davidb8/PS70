@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Week 7 - Electronic Devices</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+
+    <style>
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dddddd;
+  padding: 10px;
+  width: max-content;
+  text-align: center;
+}
+
+p {
+    padding-left:  15rem;
+    padding-right:  15rem;
+    font-size: 1.3rem;
+}
+
+code {
+  color:rgb(255, 255, 255);
+}
+
+div {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2em 0;
+}
+
+
+img {
+  border: 16px solid rgb(109, 109, 109);
+}
+header {
+    background-color: #f2f2f2;
+    color: #333;
+    padding-bottom: 0rem;
+    text-align: center;
+}
+
+
+    </style>
+
+  </head>
+
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">David Brown?</a></li>
+          <li><a href="../final_project.html">Final Project</a></li>
+        </ul>
+      </nav>
+      <h1 style="padding: 0">Electronic Output Devices</h1>
+      <p style="padding: 0;margin: 3px;">Week 7</p>
+      <p style="padding: 0;margin: 3px;">March 23, 2023</p>
+    </header>
+
+    <main>
+        <section>
+          <h2>Introduction</h2>
+          <p>
+            This week the goal was to work with Output Devices. This is another important week thus far in the context of preparing
+            for the final project. For my final project, I will rely on some pretty solid communication between input devices and output devices,
+            which is not the most enjoyable thing in the world to create.
+            <br><br>
+            There are two major "output" devices for my final project, 1 is the digital display and the other are the pumps. The pumps I hope to
+            address in the week we spend on stepper motors, so this week was centralized on working on understanding how to use a digital display
+            system.
+          </p>
+        </section>
+
+        <section>
+          <h2>TFT Display</h2>
+          <p>
+            So there are two major kinds of displays, TFT and OLED. I went for a TFT, which stands for a Thin Film Transistor Display. The big
+            advantages of it are its longer life span and larger screen sizes. I am working with a 2.8 inch display which should be just the
+            perfect size for the display on my BarBot. 
+            <br><br>
+            There are two main things the display is meant to handle. 1 is the menu function that will correspond with the User inputted actions
+            with buttons to scroll through the features of the BarBot. The other function will be to display steps and instructions for crafting
+            a cocktail. The approach I have settled on is to create bitmap images of each potential display, and then whenever the screen needs to
+            display something alternative, the new corresponding bitmap will be loaded to the display. 
+            <br><br>
+            <img src="sample bitmap.jpg" alt="sample bitmap" width="35%">
+            <br><br>
+            Wiring up the board was not the most difficult thing in the world, it was a lot of different connections, and the online resources were 
+            typically for alternative TFT boards, but I managed to get it figured out. The harder step was getting the SD card that is built into
+            the TFT board to function correctly. It involved essentially having a separate Master-Slave connection system on the TFT for the SD
+            reading. But after being able to wire everything, I was able to load up a bitmap file I created and have it display to the screen.
+            <br><br>
+            <img src="Initial Wiring.jpg" alt="Wiring" width="35%">
+            <img src="Grace Wiring.jpg" alt="Wiring" width="35%">
+            <img src="scematic.jpg" alt="Board Schematic" width="35%">
+            <br><br>
+            <img src="Example Graphic.gif" alt="Example Image Display" width="35%">
+            <br><br>
+          </p>
+          <h2>Combining Inputs and Outputs</h2>
+          <p>
+            As you can see, this is a slightly slow process to update the screen, but everything looks great! The next step is to create a few more 
+            bitmaps. I think the goal for this week is to have the NFC reader that I programmed last week to determine the graphic displayed on 
+            the TFT display. So, I went about creating the integration for an arduino script that has both the input and output devices working together,
+            And I unfortunately ended up with this error.
+            <br><br>
+            <img src="error.jpg" alt="Board Schematic" width="80%">
+            <br><br>
+            The Arduino Uno apparently has a very limited onboard storage for scripts. The TFT libraries for uploading bitmaps to the screen and accessing 
+            the SD card are extremely large, and when combined with the libraries for the NFC sensor, it actually exceeds the storage allocation, and
+            thus I couldn't upload my script! So this was a bit of a bummer, the solution to this long term is to shift over to the ESP32 which has 
+            significantly more memory storage, but it will involve a decent amount of trouble shooting time for working with a different microcontroller,
+            so I am planning to take that time in the coming weeks, and for now use an alternative input device for testing.
+            <br><br>
+            So I shifted over to a simple button input, and whenever the button is pressed it will cycle through the graphics. This was good practice
+            for the programming challenges I will have with the multitasking and ensuring I dont overcrowd by output devices with information. I am using
+            a readButton() function that utilizes Millis for the button input, and whenever the button is pressed it will cycle a value between 1, 2, and 3. 
+            Then the updateScreen() function
+            will see if that value corresponds to the graphic already on the display, if it is, then the screen does not update (to prevent backlogging), 
+            and the value does not correspond to what is being displayed, it will update the display and not allow for the updating of the values with
+            the button.
+            <br><br>
+            <img src="Final Wiring.jpg" alt="Board Schematic" width="35%">
+            <video width="320" height="240" controls>
+              <source src="Final Product.mp4" type="video/mp4" width = "35%">
+            </video> 
+            <br><br>
+            So everything seems to be working well! I am glad with the progress that I was able to make on this, and while I wasn't able to integrate
+            the TFT display with the NFC inputs, the porting should be relatively simple to go from a button input to an NFC input once I transition
+            to the ESP32. 
+            <br><br>
+            I also hooked up an oscilloscope to the clock mechanism of my TFT display and this is what the oscilloscope displayed:
+            <br><br>
+            <img src="ossilascope.gif" alt="Board Schematic" width="35%">
+            <br><br>
+            I Hooked up between ground and the DC into the scope, and it sowed a naturally fluctuating signal. Once I pressed the button
+            to update the screen though, the signal being heavily more volatile. I believe this is due to the use of varying voltage values
+            to transmit information quickly on what should be displayed on the TFT screen. Super cool to see this in action.
+
+            <br><br>
+            As always, here is the code that I used for the final script.
+
+            <a download href='Week07\TFT_button_integration\TFT_button_integration.ino'>Download my code</a>
+            
+            <pre><code>
+                
+#include <Adafruit_GFX.h>         // Core graphics library
+  #include <Adafruit_ILI9341.h>     // Hardware-specific library
+  #include <SdFat.h>                // SD card & FAT filesystem library
+  #include <Adafruit_SPIFlash.h>    // SPI / QSPI flash library
+  #include <Adafruit_ImageReader.h> // Image-reading functions
+  
+  
+  // Display Setup
+  #define USE_SD_CARD
+  
+  // TFT display and SD card share the hardware SPI interface, using
+  // 'select' pins for each to identify the active device on the bus.
+  
+  #define SD_CS   4 // SD card select pin
+  #define TFT_CS 10 // TFT select pin
+  #define TFT_DC  9 // TFT display/command pin
+  
+  #if defined(USE_SD_CARD)
+    SdFat                SD;         // SD card filesystem
+    Adafruit_ImageReader reader(SD); // Image-reader object, pass in SD filesys
+  #else
+    // SPI or QSPI flash filesystem (i.e. CIRCUITPY drive)
+    #if defined(__SAMD51__) || defined(NRF52840_XXAA)
+      Adafruit_FlashTransport_QSPI flashTransport(PIN_QSPI_SCK, PIN_QSPI_CS,
+        PIN_QSPI_IO0, PIN_QSPI_IO1, PIN_QSPI_IO2, PIN_QSPI_IO3);
+    #else
+      #if (SPI_INTERFACES_COUNT == 1)
+        Adafruit_FlashTransport_SPI flashTransport(SS, &SPI);
+      #else
+        Adafruit_FlashTransport_SPI flashTransport(SS1, &SPI1);
+      #endif
+    #endif
+    Adafruit_SPIFlash    flash(&flashTransport);
+    FatVolume        filesys;
+    Adafruit_ImageReader reader(filesys); // Image-reader, pass in flash filesys
+  #endif
+  
+  //Adafruit_ILI9341     tft    = Adafruit_ILI9341(TFT_CS, TFT_DC,11,13,8,12);
+  Adafruit_ILI9341     tft    = Adafruit_ILI9341(TFT_CS, TFT_DC,5,6,8,7);
+  
+  Adafruit_Image       img;        // An image loaded into RAM
+  int32_t              width  = 0, // BMP image dimensions
+                       height = 0;
+  
+  
+  
+  
+                       
+  // constants won't change. They're used here to set pin numbers:
+  const int buttonPin = 2;  // the number of the pushbutton pin
+  const int ledPin = 3;    // the number of the LED pin
+  
+  // variables will change:
+  int buttonState = 0;  // variable for reading the pushbutton status
+  int ScreenImage = 0;
+  int screen = 0;
+  long previousMillis = 0; 
+  long interval = 500;
+  
+  
+  void setup() {
+    Serial.begin(9600);
+    // initialize the LED pin as an output:
+    pinMode(ledPin, OUTPUT);
+    // initialize the pushbutton pin as an input:
+    pinMode(buttonPin, INPUT_PULLUP);
+  
+    ImageReturnCode stat; // Status from image-reading functions
+  
+    #if !defined(ESP32)
+      while(!Serial);       // Wait for Serial Monitor before continuing
+    #endif
+  
+    tft.begin();          // Initialize screen
+  
+    // The Adafruit_ImageReader constructor call (above, before setup())
+    // accepts an uninitialized SdFat or FatVolume object. This MUST
+    // BE INITIALIZED before using any of the image reader functions!
+    Serial.print(F("Initializing filesystem..."));
+    #if defined(USE_SD_CARD)
+    // SD card is pretty straightforward, a single call...
+    if(!SD.begin(SD_CS)) { // ESP32 requires 25 MHz limit
+      Serial.println(F("SD begin() failed"));
+      for(;;); // Fatal error, do not continue
+    }
+    #else
+    // SPI or QSPI flash requires two steps, one to access the bare flash
+    // memory itself, then the second to access the filesystem within...
+    if(!flash.begin()) {
+      Serial.println(F("flash begin() failed"));
+      for(;;);
+    }
+    if(!filesys.begin(&flash)) {
+      Serial.println(F("filesys begin() failed"));
+      for(;;);
+    }
+    #endif
+    Serial.println(F("OK!"));
+  
+    // Fill screen blue. Not a required step, this just shows that we're
+    // successfully communicating with the screen.
+    tft.fillScreen(ILI9341_BLUE);
+  
+    // Load full-screen BMP file 'purple.bmp' at position (0,0) (top left).
+    // Notice the 'reader' object performs this, with 'tft' as an argument.
+    tft.setRotation(3);    // Set rotation
+    Serial.print(F("Loading nfc.bmp to screen..."));
+    stat = reader.drawBMP("/nfc.bmp", tft, 0, 0);
+    reader.printStatus(stat);   // How'd we do?
+    delay(1000);
+  
+  
+  }
+  void readButton()
+  {
+    unsigned long currentMillis = millis();
+    if(currentMillis - previousMillis > interval)
+    {
+      buttonState = digitalRead(buttonPin);
+  
+      if (buttonState == HIGH) {
+  
+      //  do nothing
+      } 
+      else {
+        // turn LED off:
+        previousMillis = currentMillis;
+  
+        screen += 1;
+        if (screen > 3)
+        {
+          screen = 1;
+        }
+        Serial.println(screen);
+  
+      }
+  
+    }
+  
+  }
+  
+  void loop() {
+    readButton();
+    updateScreen();
+  }
+  
+  
+  void updateScreen()
+  {
+    // make sure screen not already displaying correct info
+    
+    if (!(screen == ScreenImage))
+    {
+    
+      // update Screen
+      ScreenImage = screen;
+  
+      if (screen == 0)
+      {
+        reader.drawBMP("/nfc.bmp", tft, 0, 0);
+      }
+      if (screen == 1)
+      {
+        reader.drawBMP("/mojito.bmp", tft, 0, 0);
+      }
+      if (screen == 2)
+      {
+        reader.drawBMP("/g&t.bmp", tft, 0, 0);
+      }
+      if (screen == 3)
+      {
+        reader.drawBMP("/whiskey sour.bmp", tft, 0, 0);
+      }
+    }  
+    
+  }
+  
+                
+            
+                
+            </code></pre>
+          </p>
+        </section>
+
+
+
+    </main>
+  </body>
+</html>
