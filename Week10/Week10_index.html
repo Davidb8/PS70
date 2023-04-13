@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Week 10 - MVP</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+
+    <style>
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dddddd;
+  padding: 10px;
+  width: max-content;
+  text-align: center;
+}
+
+p {
+    padding-left:  15rem;
+    padding-right:  15rem;
+    font-size: 1.3rem;
+}
+
+code {
+  color:rgb(255, 255, 255);
+}
+
+div {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2em 0;
+}
+
+
+img {
+  border: 16px solid rgb(109, 109, 109);
+}
+header {
+    background-color: #f2f2f2;
+    color: #333;
+    padding-bottom: 0rem;
+    text-align: center;
+}
+
+
+    </style>
+
+  </head>
+
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">David Brown?</a></li>
+          <li><a href="../final_project.html">Final Project</a></li>
+        </ul>
+      </nav>
+      <h1 style="padding: 0">Minimum Viable Product</h1>
+      <p style="padding: 0;margin: 3px;">Week 10</p>
+      <p style="padding: 0;margin: 3px;">April 13, 2023</p>
+    </header>
+
+    <main>
+        <section>
+          <h2>Introduction</h2>
+          <p>
+            This week the goal was to work on our Minimum Viable Product (MVP) for our final project. This is theoretically the most challenging 
+            component to design or build or make function into my system for my final project.
+            <br><br>
+            For me, the most challenging part of my BarBot will likely be the precision pumping to ensure pouring of an exact amount of fluid. This is a great 
+            time to work on this part of my project because we just started to work with Stepper Motors. Use a pretty fancy setup of electromagenates to give 
+            extreme precision to the steps (to the order of like a millionth of a degree if you are microstepping). I don't think I need that level of precision,
+            but I do want to be able to get pretty close to 1.5 oz pours consistenently. 
+            <br><br>
+            With that, the goal is to learn how to use a stepper motor, make a pump carriage that fits onto the motor, and pump some water!
+          </p>
+        </section>
+
+        <section>
+          <h2>Pump Building</h2>
+          <p>
+            I spoke with Nathan who recommended the 28BYJ stepper motor, which is pretty small with decent power, but is still very cheep (which is 
+            good because I will need several). So, as to not reinvent the wheel, I headed to the internet to find out if anyone had made a peristaltic
+            pump before, to see what of their designs I could harvest. I found <a href="https://www.printables.com/model/63352-mini-peristaltic-pump-for-28byj-48-stepper-motor/files">this</a>
+            which is a pump that someone else made for this motor - how convenient!! So I downloaded their STL files for thw 4mm tubing version (as I am
+            primarly focused on speed), and went to printing. Everything printed perfectly, and once the bearings I ordered to pinch the tubing came in,
+            I set out to assembly 
+            <br><br>
+            <img src="prusa slicer.png" alt="STL of Pump" width="35%">
+            <img src="4mm pump.jpg" alt="4mm Pump" width="35%">
+            <br><br>
+            Unfortunately, I soon found out that we only have 3mm and 5mm tubing in stock in the shop. I thought we had 4mm but I was just squeezing the
+            5mm to cope. So I had to go back and reprint to the 3mm pump version. Now things were fitting together much more nicely.
+            <br><br>
+          </p>
+
+          <h2>Testing</h2>
+          <p>
+            To test the system, I setup two cups and wrote up a super short bit of code just to run the motor for a half a rotation. In the future, I will
+            do testing to determine how many "steps" the motor needs to take to correspond to 1.5oz of fluid being pumped. The code is linked 
+            <a download href='Week10\motor running\motor running.ino'>here.</a>
+            <br><br>
+            <img src="###.jpg" alt="Final Pump Working" width="35%">
+            <br><br>
+            And when running the system we see that the water is going through the pump!! The process is a little slow at the moment, and the motor does
+            get extremely hot after running for a few minutes. So those will both be things that need to be figured out. But once I figure that out, as well as
+            the step count needed, I will basically just have to make more pumps, and I will have finished this aspect of my project.
+          </p>
+
+        </section>
+
+
+
+    </main>
+  </body>
+</html>
