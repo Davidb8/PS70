@@ -13,14 +13,14 @@ void setup() {
 	// initial speed and the target position
 	myStepper.setMaxSpeed(1000.0);
 	myStepper.setAcceleration(50.0);
-	myStepper.setSpeed(200);
+	myStepper.setSpeed(2000);
 	myStepper.moveTo(2038);
 }
 
 void loop() {
 	// Change direction once the motor reaches target position
 	if (myStepper.distanceToGo() == 0) 
-		myStepper.moveTo(myStepper.currentPosition()+500);
+		myStepper.moveTo(myStepper.currentPosition()+50000);
 
 	// Move the motor one step
 	myStepper.run();
