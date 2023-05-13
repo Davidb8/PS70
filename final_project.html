@@ -121,12 +121,12 @@
         the worlds first BarBot!
         <br><br>
         These are some sketches regarding the final project ideas
+        <br><br>
+        <img src="Final Project Photos/initial sketch 1.png" alt="OG Design sketch 1" width="25%">
+        <img src="Final Project Photos/initial sketch 2.png" alt="OG Design sketch 2" width="25%">
+        <img src="Final Project Photos/initial sketch 3.png" alt="OG Design sketch 3" width="25%">
+        <br><br>
       </p>
-      <br><br>
-      <img src="Final Project Photos/initial sketch 1.png" alt="OG Design sketch 1" width="25%">
-      <img src="Final Project Photos/initial sketch 2.png" alt="OG Design sketch 2" width="25%">
-      <img src="Final Project Photos/initial sketch 3.png" alt="OG Design sketch 3" width="25%">
-      <br><br>
     </div>
 
     <div>
@@ -166,7 +166,7 @@
         that way it can use the 9V power supply, and not drain the esp32.
 
         <br><br>
-        <video width="320" height="240" controls>
+        <video width="480" height="360" controls>
           <source src="Final Project Photos/eps32_Initial_Demo.mp4" type="video/mp4" width="40%">
         </video>
         <br><br>
@@ -195,6 +195,85 @@
 
         Then I found this circuit board that was being used for the button control. I decided that I wanted to hijack
         the board that way I could use their button system, which would give me a pretty cool effect.
+
+        <br><br>
+        <img src="Final Project Photos/Keurig Board.jpg" alt="Keurig Board" width="40%">
+        <br><br>
+
+        I used a ultrasonic cutter to cut out a piece of the top of the keurig so I could install my tft display. After
+        doing some initial wiring I ended up with this.
+
+        <br><br>
+        <img src="Final Project Photos/Screen Install.jpg" alt="Screen Install" width="40%">
+        <br><br>
+
+        I made a quick code test, and this is the buttons and the screen working together in action. There is even a Red
+        LED indicator light.
+
+        <br><br>
+        <img src="Final Project Photos/Initial_Screen_Test.gif" alt="Screen Test" width="40%">
+        <br><br>
+
+        Then it was on to the pump install. I basically attempted to shove all the pumps into where the water heater
+        system was, as that had the most open space. It was a small nightmare trying to navigate both ends of the
+        tubing, as well as keeping track of all the wiring connections. But I eventually got them all installed. Hooking
+        everything up just meant getting a few more relays and making some shared wires - nothing too bad.
+
+        <br><br>
+        <img src="Final Project Photos/Final Guts.jpg" alt="Final Guts" width="32%">
+        <img src="Final Project Photos/Initial_Pour_Test.gif" alt="Pour Test" width="32%">
+        <img src="Final Project Photos/Final Front.jpg" alt="Final Front" width="32%">
+        <br><br>
+        <img src="Final Project Photos/Final Side.jpg" alt="Final Side" width="32%">
+        <img src="Final Project Photos/Final Front.jpg" alt="Final Front" width="32%">
+        <img src="Final Project Photos/Final Top.jpg" alt="Final Top" width="32%">
+        <br><br>
+
+        The pouring seems to work, and everything is maybe a bit clunky still, but not bad. So now its time to finish of
+        building the code. I needed to create a menu system, and determine the timings for the pouring. The code I am
+        using is linked <a download href='Week12/BarBot v3/BarBot v3.ino'>here.</a>. After a tremendous amount of
+        testing, here are some action videos.
+
+        <br><br>
+        <video width="480" height="360" controls>
+          <source src="Final Project Photos/Exterior.mp4" type="video/mp4" width="40%">
+        </video>
+        <br><br>
+        <video width="480" height="360" controls>
+          <source src="Final Project Photos/Screen_Finished.mp4" type="video/mp4" width="40%">
+        </video>
+        <br><br>
+        <video width="480" height="360" controls>
+          <source src="Final Project Photos/Rough_Full_Test.mp4" type="video/mp4" width="40%">
+        </video>
+        <br><br>
+
+        After all of this I decided I was ready to try and box it up and make it look pretty. This was a mistake. I
+        squished all of the wiring together, and ended up causing 9V line to touch one of the connectors for my eps32,
+        which caused the board to fry and consequently not work. This all happened in a brief 5 minutes at 12:30 AM..
+        Which was maybe not a high of a time. So I came back in the next morning and hooked up a slightly different
+        eps32 that I bought on amazon just in case, and thankfully I was able to get it to work (and this one was a lot
+        easier to use than the other version which was a nice thing to find out).
+
+        <br><br>
+
+        After verifying everything still works, I am ready to box it up. This time just for some storage, so I
+        disconnected some of the wiring, and installed everything into its box.
+
+        <br><br>
+        <img src="Final Project Photos/Final Closed Front.jpg" alt="Final Closed Front" width="22%">
+        <img src="Final Project Photos/Final Closed Side.jpg" alt="Final Closed Side" width="22%">
+        <img src="Final Project Photos/Final Closed Top.jpg" alt="Final Closed Top" width="32%">
+        <br><br>
+
+        I do have a few more things left that I want to do for the version 2. First I obviously want to have all of the
+        wiring fit and go inside of the Keurig case. I also want to secure all of the motors that way the tubing doesn't
+        pinch itself, restricting flow. I want to clean up the top TFT display carriage, and I want to attempt using 12V
+        input to see if that increases my flow speed. Finally, I may end up implementing the RFID scanner, or I may just
+        use it for another project... Like an ordering system.
+
+
+
 
       </p>
     </div>
